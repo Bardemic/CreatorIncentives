@@ -42,7 +42,7 @@ export default function ActiveCampaigns(props) {
                         key={index}
                         description={campaign.description}
                         imageLink={campaign.image_link}
-                        name={campaign.name}
+                        name={campaign.company_name}
                         payout={campaign.payout}
                     />
                 ))}
