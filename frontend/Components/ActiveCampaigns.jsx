@@ -32,7 +32,7 @@ export default function ActiveCampaigns(props) {
     }
 
     return (
-        <div className="p-2">
+        <div className="">
             <h3 className="text-xl pl-1 font-bold">
                 Active Campaigns
             </h3>

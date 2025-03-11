@@ -1,7 +1,7 @@
 export default function Button(props) {
     return (
-        <button onClick={() => props.selectFunction(props.value)} className={`py-2 px-4 w-full justify-between flex gap-4 ${props.selected ? 'text-gray-100' : 'text-stone-400'} items-center transition delay-75 text-lg duration-150 rounded-md hover:bg-black/5`}>
-            {props.value} {props.endIcon}
-        </button>
+        <div className="p-2 hover:cursor-pointer px-4 rounded-lg bg-indigo-500 text-stone-50 transition duration-75 hover:bg-indigo-500/80">
+            Open
+        </div>
     )
 }

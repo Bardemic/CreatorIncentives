@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Card from "@/Components/Card";
 import Sidebar from "@/Components/Sidebar";
 import ActiveCampaigns from "@/Components/ActiveCampaigns";
+import AnalyticsCard from "@/Components/AnalyticsCard";
+import LatestVideos from "@/Components/LatestVideos";
 
 
 export default function Home() {
@@ -10,8 +10,13 @@ export default function Home() {
   return (
     <div className="h-screen flex items-center">
       <Sidebar />
-      <div className="flex flex-col h-screen items-start justify-start">
+      <div className="flex flex-col h-screen p-8 gap-4 items-start justify-start bg-neutral-50 w-full">
+          <div className="flex gap-4">
+              <AnalyticsCard/>
+              <AnalyticsCard/>
+          </div>
           <ActiveCampaigns campaigns={testCampaigns} />
+          <LatestVideos />
       </div>
     </div>
   );

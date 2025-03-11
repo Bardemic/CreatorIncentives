@@ -1,7 +1,9 @@
+import Button from "@/Components/Button";
+
 export default function Card(props) {
     return (
-        <div className="flex justify-between w-72 h-40 bg-stone-100 rounded-lg">
-            <div className="flex flex-col items-start justify-between p-2 max-w-1/2">
+        <div className="flex drop-shadow-sm justify-between w-80 h-40 bg-white rounded-lg">
+            <div className="flex flex-col items-start justify-between p-2 pr-4">
                 <div>
                     <h1 className="text-xl font-bold">
                         {props.name}
@@ -11,9 +13,12 @@ export default function Card(props) {
                     </div>
                 </div>
 
-                <div className="flex w-full justify-end items-center gap-1">
-                    <span className="text-red-500 text-lg">${props.payout}</span>
-                    <span className="text-md text-gray-600">/1k</span>
+                <div className="flex w-full justify-between gap-4">
+                    <Button />
+                    <div className="flex justify-end items-center">
+                        <span className="text-red-500 text-lg">${props.payout}</span>
+                        <span className="text-md text-gray-600">/1k</span>
+                    </div>
                 </div>
             </div>
             <img className={'rounded-r-lg'} src={props.imageLink} alt=""/>
