@@ -39,6 +39,7 @@ export default function ActiveCampaigns(props) {
             <div className="flex gap-4">
                 {campaigns && campaigns.map((campaign, index) => (
                     <Card
+                        campaignID={campaign.id}
                         key={index}
                         description={campaign.description}
                         imageLink={campaign.image_link}

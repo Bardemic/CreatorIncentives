@@ -14,7 +14,7 @@ export default function Card(props) {
                 </div>
 
                 <div className="flex w-full justify-between gap-4">
-                    <Button />
+                    <Button campaignID={props.campaignID} />
                     <div className="flex justify-end items-center">
                         <span className="text-red-500 text-lg">${props.payout}</span>
                         <span className="text-md text-gray-600">/1k</span>
