@@ -1,10 +1,10 @@
 'use client'
 
-import Sidebar from "../Components/Sidebar";
-import ActiveCampaigns from "../Components/ActiveCampaigns";
-import AnalyticsCard from "../Components/AnalyticsCard";
-import LatestVideos from "../Components/LatestVideos";
+import Sidebar from "./Components/Sidebar.jsx";
 import {useState} from "react";
+import {Route, Routes} from "react-router";
+import HomeDashboard from "./Components/HomeDashboard.jsx";
+import AnalyticsCard from "./Components/AnalyticsCard.jsx";
 
 
 export default function Home() {
@@ -13,16 +13,12 @@ export default function Home() {
     let testCampaigns = [{description: "Modern AI calorie tracking app",imageLink: "https://picsum.photos/220/300", name: "CalorieOne", payout:"0.05"}, {description: "Track your food intake on one app", imageLink: "https://picsum.photos/220/300", name: "FoodCheck", payout: "0.04"}]
 
   return (
-    <div className="h-screen flex items-center">
+    <div className="h-screen w-screen flex items-center">
       <Sidebar selected={selected} setSelected={setSelected} />
-      <div className="flex flex-col h-screen p-8 gap-4 items-start justify-start bg-neutral-50 w-full">
-          <div className="flex gap-4">
-              <AnalyticsCard/>
-              <AnalyticsCard/>
-          </div>
-          <ActiveCampaigns campaigns={testCampaigns} />
-          <LatestVideos />
-      </div>
+        <Routes>
+            <Route path="/Home" element=<HomeDashboard campaigns={testCampaigns} /> />
+            <Route path="/Analytics" element=<AnalyticsCard/> />
+        </Routes>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import VideoCard from "./VideoCard";
+import VideoCard from "./VideoCard.jsx";
 
 export default function LatestVideos() {
     return (
@@ -6,7 +6,7 @@ export default function LatestVideos() {
             <h1 className='text-xl font-bold'>
                 Latest Videos
             </h1>
-            <div className='w-screen flex gap-4'>
+            <div className='w-full flex gap-4'>
                 <VideoCard
                     description={"This description will be fetched from the video"}
                     imageLink={"https://picsum.photos/1080/1920"}

@@ -1,6 +1,6 @@
 'use client'
-import SidebarButton from "./SidebarButton";
-import {LayoutDashboard, SettingsIcon, TvMinimal, Megaphone } from "lucide-react";
+import SidebarButton from "./SidebarButton.jsx";
+import {ChartBar, LayoutDashboard, SettingsIcon, TvMinimal, Megaphone } from "lucide-react";
 import {useState} from "react";
 
 export default function Sidebar(props) {
@@ -12,10 +12,10 @@ export default function Sidebar(props) {
             <div className="flex flex-col gap-2">
                 <SidebarButton
                     endIcon={<LayoutDashboard size={20} />}
-                    selected={props.selected === "HomePage"}
+                    selected={props.selected === "Home"}
                     selectedColor={'text-indigo-500'}
                     selectFunction={props.setSelected}
-                    value={"HomePage"}
+                    value={"Home"}
                 />
                 <SidebarButton
                     endIcon={<SettingsIcon size={20} />}
@@ -37,6 +37,13 @@ export default function Sidebar(props) {
                     selectedColor={'text-indigo-500'}
                     selectFunction={props.setSelected}
                     value={"Campaigns"}
+                />
+                <SidebarButton
+                    endIcon={<ChartBar size={20} />}
+                    selected={props.selected === "Analytics"}
+                    selectedColor={'text-indigo-500'}
+                    selectFunction={props.setSelected}
+                    value={"Analytics"}
                 />
             </div>
         </div>

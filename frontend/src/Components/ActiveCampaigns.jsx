@@ -1,6 +1,6 @@
 'use client'
 
-import Card from "./Card";
+import Card from "./Card.jsx";
 import {useEffect, useState} from "react";
 
 export default function ActiveCampaigns(props) {
