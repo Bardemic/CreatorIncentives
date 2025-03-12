@@ -18,13 +18,6 @@ export default function Sidebar(props) {
                     value={"Home"}
                 />
                 <SidebarButton
-                    endIcon={<SettingsIcon size={20} />}
-                    selected={props.selected === "Settings"}
-                    selectedColor={'text-indigo-500'}
-                    selectFunction={props.setSelected}
-                    value={"Settings"}
-                />
-                <SidebarButton
                     endIcon={<TvMinimal size={20}/>}
                     selected={props.selected === "Videos"}
                     selectedColor={'text-indigo-500'}
@@ -44,6 +37,13 @@ export default function Sidebar(props) {
                     selectedColor={'text-indigo-500'}
                     selectFunction={props.setSelected}
                     value={"Analytics"}
+                />
+                <SidebarButton
+                    endIcon={<SettingsIcon size={20} />}
+                    selected={props.selected === "Settings"}
+                    selectedColor={'text-indigo-500'}
+                    selectFunction={props.setSelected}
+                    value={"Settings"}
                 />
             </div>
         </div>

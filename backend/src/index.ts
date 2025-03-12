@@ -3,7 +3,7 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import {createClient, SupabaseClient} from "@supabase/supabase-js";
 import * as process from "node:process";
-import {getAllCampaigns} from "./database/database";
+import {getAllCampaigns, getCampaign} from "./database/database";
 let cors = require("cors");
 
 
@@ -21,6 +21,14 @@ app.get("/", (req: Request, res: Response) => {
 
 app.get("/campaigns", async (req: Request, res: Response) => {
     let data : any = await getAllCampaigns(supabase);
+    res.send(JSON.stringify(data));
+})
+
+app.get("/campaigns/:id", async (req: Request, res: Response) => {
+    let data : any = await getCampaign(supabase, req.params.id);
+    if (data == null) {
+        res.status(404).send("No campaign found!");
+    }
     res.send(JSON.stringify(data));
 })
 
