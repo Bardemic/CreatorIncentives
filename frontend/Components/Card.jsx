@@ -1,4 +1,4 @@
-import Button from "@/Components/Button";
+import Button from "./Button";
 
 export default function Card(props) {
     return (

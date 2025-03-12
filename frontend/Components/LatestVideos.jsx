@@ -1,4 +1,4 @@
-import VideoCard from "@/Components/VideoCard";
+import VideoCard from "./VideoCard";
 
 export default function LatestVideos() {
     return (

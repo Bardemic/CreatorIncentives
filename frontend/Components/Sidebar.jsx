@@ -1,5 +1,5 @@
 'use client'
-import SidebarButton from "@/Components/SidebarButton";
+import SidebarButton from "./SidebarButton";
 import {LayoutDashboard, SettingsIcon, TvMinimal, Megaphone } from "lucide-react";
 import {useState} from "react";
 

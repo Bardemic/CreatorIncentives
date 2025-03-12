@@ -1,9 +1,9 @@
 'use client'
 
-import Sidebar from "@/Components/Sidebar";
-import ActiveCampaigns from "@/Components/ActiveCampaigns";
-import AnalyticsCard from "@/Components/AnalyticsCard";
-import LatestVideos from "@/Components/LatestVideos";
+import Sidebar from "../Components/Sidebar";
+import ActiveCampaigns from "../Components/ActiveCampaigns";
+import AnalyticsCard from "../Components/AnalyticsCard";
+import LatestVideos from "../Components/LatestVideos";
 import {useState} from "react";
 
 
