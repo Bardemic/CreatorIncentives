@@ -16,13 +16,14 @@ export default function Home() {
 
   return (
     <div className="h-screen w-screen flex items-center">
-      <Sidebar selected={selected} setSelected={setSelected} />
+      <Sidebar selected={selected} setSelected={setSelected}>
         <Routes>
             <Route path="/Home" setSelected={setSelected} element=<HomeDashboard campaigns={testCampaigns} /> />
             <Route path="/Analytics" element=<AnalyticsCard/> />
             <Route path="/Campaigns" setSelected={setSelected} element=<ActiveCampaignsDashboard/> />
             <Route path="/Campaigns/:campaignID" element=<CampaignPage/> />
         </Routes>
+      </Sidebar>
     </div>
   );
 }

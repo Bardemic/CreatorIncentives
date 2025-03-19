@@ -12,12 +12,17 @@
     border-radius: 0.5em;
     filter: drop-shadow(var(--drop-shadow-sm));
   }
+  .primaryBackgroundGradient {
+    background-image: var(--gradient-primaryBG);
+  }
 }
 
 @theme {
-  --color-primary: var(--color-stone-50);
+  --color-primary: #fdf8fd;
   --color-secondary: var(--color-white);
   --color-tertiary: var(--color-indigo-500);
+
+  --gradient-primaryBG: linear-gradient(60deg, #e9e9ff, #f7e9ff);
 }
 
 @theme inline {
