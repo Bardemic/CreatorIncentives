@@ -21,13 +21,30 @@ export const getCampaign = async (supabase: SupabaseClient, id: string) => {
         .eq('id', id)
     if (error) {
         console.log(error);
-        console.log("RUH ROH, ERROR ON AISLE DATABASE.TS ROW GETCAMPAIGN");
+        console.log("OH GOD, ERROR ON AISLE DATABASE.TS ROW GETCAMPAIGN ONE");
         return error; //add some error handling for when campaign id invalid plzzz
     }
-    if (campaign == null) {
-        return null;
-    }
-    console.log(campaign);
 
-    return campaign[0];
+    if (campaign == null) {
+        return campaign;
+    }
+
+    console.log(campaign[0].id, "TESTTT");
+
+    let {data: campaignVideos, error: errortwo} = await supabase
+        .from('videos')
+        .select('*')
+        .eq('campaign_id', id)
+
+
+    if (errortwo) {
+        console.log(errortwo);
+        console.log("NOOO, ERROR ON AISLE DATABASE.TS ROW GETCAMPAIGN TWO");
+        return errortwo; //add some error handling for when campaign id invalid plzzz
+    }
+
+    console.log(campaign);
+    console.log(campaignVideos)
+
+    return {campaign: campaign[0], campaignVideos: campaignVideos};
 }

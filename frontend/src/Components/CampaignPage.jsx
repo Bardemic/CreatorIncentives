@@ -2,10 +2,14 @@ import { useParams } from "react-router";
 import {useEffect, useState} from "react";
 import PageHeader from "./PageHeader.jsx";
 import CampaignDetail from "./CampaignDetail.jsx";
+import Button from "./Button.jsx";
+import NewVideoForm from "./NewVideoForm.jsx";
+import CampaignVideos from "./CampaignVideos.jsx";
 
 export default function CampaignPage() {
     let params = useParams();
     const [campaign, setCampaign] = useState({});
+    const [campaignVideos, setCampaignVideos] = useState([]);
 
     useEffect(() => {
         try {
@@ -15,8 +19,9 @@ export default function CampaignPage() {
                         response.json()
                             .then(data => {
                                 console.log(data);
-                                if (data && data.id) {
-                                    setCampaign(data);
+                                if (data && data.campaign) {
+                                    setCampaign(data.campaign);
+                                    setCampaignVideos(data.campaignVideos);
                                 } //add else redirect to 404
                             })
 
@@ -49,10 +54,14 @@ export default function CampaignPage() {
                         </h3>
                         <CampaignDetail first={'Payout Per 1000 Views: '} second={`$${campaign.payout}`} />
                         <CampaignDetail first={'Max Payout Per Video: '} second={`$${campaign.payout * 251}`}  third={' (251,000 views)'}/>
+                        <CampaignDetail first={'Remaining Payout Budget: '} second={`$${3000 - (campaign.payout * 32)}`}/>
                         <div className='outline-1 w-full my-2 outline-neutral-400'></div>
                         <CampaignDetail first={'Total Videos: '} second={19} />
                         <CampaignDetail first={'Total Views: '} second={'39,245'} />
                     </div>
+                    <CampaignVideos videos={campaignVideos} />
+                    <NewVideoForm campaign_id={campaign.id} />
+
                 </div>}
         </div>
     )
