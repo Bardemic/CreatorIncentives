@@ -2,7 +2,7 @@ import Button from "./Button.jsx";
 
 export default function Card(props) {
     return (
-        <div className="flex drop-shadow-sm justify-between w-80 h-40 bg-white rounded-lg">
+        <div className="flex justify-between w-80 h-40 card drop-shadow-sm">
             <div className="flex flex-col items-start justify-between p-2 pr-4">
                 <div>
                     <h1 className="text-xl font-bold">

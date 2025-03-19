@@ -2,7 +2,7 @@ import {EyeIcon} from "lucide-react";
 
 export default function VideoCard(props) {
     return (
-        <div className="flex drop-shadow-sm justify-between w-80 h-60 bg-white rounded-lg">
+        <div className="flex drop-shadow-sm justify-between w-80 h-60 bg-secondary rounded-lg">
             <div className="flex flex-col items-start justify-between p-4 max-w-1/2">
                 <div>
                     <h1 className="text-xl font-bold">

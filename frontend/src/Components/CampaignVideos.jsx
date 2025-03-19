@@ -1,6 +1,6 @@
 export default function CampaignVideos(props) {
     return (
-        <div className='p-4 flex flex-col bg-white rounded-lg'>
+        <div className='p-4 flex flex-col bg-secondary rounded-lg'>
             <h3 className='text-lg font-bold'>
                 Latest Videos
             </h3>

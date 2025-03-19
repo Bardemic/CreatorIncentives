@@ -28,7 +28,7 @@ export default function newVideoForm(props) {
         console.table(newVideo);
     }, [newVideo]);
     return (
-        <div className='flex items-start flex-col gap-4 bg-white p-4 rounded-lg'>
+        <div className='flex items-start flex-col gap-4 bg-secondary p-4 rounded-lg'>
             <h3 className='text-lg font-bold pb-4'>
                 Add Video to Campaign
             </h3>

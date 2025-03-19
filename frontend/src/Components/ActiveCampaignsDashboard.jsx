@@ -20,7 +20,7 @@ export default function ActiveCampaignsDashboard() {
     }, [])
 
     return (
-        <div className="flex flex-col w-full h-screen p-8 gap-4 items-start justify-start bg-neutral-50">
+        <div className="flex flex-col w-full h-screen p-8 gap-4 items-start justify-start bg-primary">
             <PageHeader title="Campaigns Dashboard" />
             {campaigns && campaigns.map((campaign, index) => (
                 <Card

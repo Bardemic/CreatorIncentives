@@ -6,6 +6,20 @@
   --foreground: #171717;
 }
 
+@layer base {
+  .card {
+    background-color: var(--color-secondary);
+    border-radius: 0.5em;
+    filter: drop-shadow(var(--drop-shadow-sm));
+  }
+}
+
+@theme {
+  --color-primary: var(--color-stone-50);
+  --color-secondary: var(--color-white);
+  --color-tertiary: var(--color-indigo-500);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
