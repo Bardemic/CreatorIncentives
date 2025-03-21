@@ -7,11 +7,15 @@ export default function ActiveCampaignsDashboard() {
 
     useEffect(() => {
         try {
-            fetch('http://localhost:3001/campaigns')
+            fetch(`http://localhost:3001/campaigns/${JSON.stringify({accessToken: JSON.parse(localStorage.getItem("auth")).access_token})}`)
                 .then(response => response.json())
                 .then(data => {
-                    //console.log(data);
-                    setCampaigns(data);
+                    console.log(data);
+                    if(Array.isArray(data)) {
+                        setCampaigns(data);
+                        console.log(data.length);
+                    }
+
                 });
         } catch (error) {
             console.log(error);
@@ -22,7 +26,7 @@ export default function ActiveCampaignsDashboard() {
     return (
         <div className="flex flex-col w-full h-screen p-8 gap-4 items-start justify-start bg-primary">
             <PageHeader title="Campaigns Dashboard" />
-            {campaigns && campaigns.map((campaign, index) => (
+            {campaigns.length > 0 && campaigns.map((campaign, index) => (
                 <Card
                     campaignID={campaign.id}
                     key={index}

@@ -2,6 +2,7 @@ import AnalyticsCard from "./AnalyticsCard.jsx";
 import ActiveCampaigns from "./ActiveCampaigns.jsx";
 import LatestVideos from "./LatestVideos.jsx";
 import PageHeader from "./PageHeader.jsx";
+import Toast from "./Toast.jsx";
 
 export default function HomeDashboard(props) {
     return (

@@ -1,10 +1,11 @@
 'use client'
 import SidebarButton from "./SidebarButton.jsx";
 import {ChartBar, LayoutDashboard, SettingsIcon, TvMinimal, Megaphone } from "lucide-react";
+import Button from "./Button.jsx";
 
 export default function Sidebar(props) {
     return (
-        <div className='h-screen pt-4 gap-8 w-52 max-w-52 min-w-52 primaryBackgroundGradient bg-primaryBG flex flex-col items-stretch px-3 text-center'>
+        <div className='border-r border-r-tertiary/50 drop-shadow-sm h-screen pt-4 gap-8 w-52 max-w-52 min-w-52 primaryBackgroundGradient  flex flex-col items-stretch px-3 text-center'>
             <h1 className='text-lg text-tertiary'>
                 <span>
                     Creator
@@ -48,6 +49,15 @@ export default function Sidebar(props) {
                     selectedColor={'text-tertiary'}
                     selectFunction={props.setSelected}
                     value={"Settings"}
+                />
+            </div>
+            <div className='bg-secondary text-tertiary card p-2'>
+                Email
+                <div>{JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).email}</div>
+                <Button
+                    type='func'
+                    onPressFunction={props.handleSignOut}
+                    text='Sign Out'
                 />
             </div>
         </div>

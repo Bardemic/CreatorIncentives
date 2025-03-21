@@ -1,9 +1,10 @@
 // src/index.ts
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import {createClient, SupabaseClient} from "@supabase/supabase-js";
+import {AuthApiError, AuthError, createClient, SupabaseClient} from "@supabase/supabase-js";
 import * as process from "node:process";
 import {getAllCampaigns, getCampaign} from "./database/database";
+import {createUser, loginUser, refreshToken} from "./auth/user.auth";
 let cors = require("cors");
 
 
@@ -20,8 +21,13 @@ app.get("/", (req: Request, res: Response) => {
     res.send("I LOVE!! CREATORINCENTIVES");
 });
 
-app.get("/campaigns", async (req: Request, res: Response) => {
-    let data : any = await getAllCampaigns(supabase);
+app.get("/campaigns/:accessToken", async (req: Request, res: Response) => {
+    if (!req.params.accessToken) {
+        res.status(400).json({error: 'Missing required fields'});
+        return;
+    }
+    let token = JSON.parse(req.params.accessToken).accessToken;
+    let data : any = await getAllCampaigns(supabase, token);
     res.send(JSON.stringify(data));
 })
 
@@ -37,6 +43,76 @@ app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
 });
 
+app.post("/refresh/", async (req: Request, res: Response) => {
+    if (!req.body.refresh_token) {
+        res.status(400).json({error: 'Missing Required Fields'});
+        console.log('user did not send refresh_token');
+        return;
+    }
+    console.log(req.body.refresh_token);
+    let data = await refreshToken(supabase, req.body.refresh_token);
+    console.log('test', data);
+    if (data == null) {
+        res.status(500).json({error: "server error, try again"});
+    }
+    else if (data instanceof AuthApiError || data instanceof AuthError) {
+        res.status(404).json({error: "authentication error, try again"});
+    }
+    else if (data.refresh_token && data.access_token) {
+        res.status(200).json(data);
+    }
+    else {
+        console.log("testblalabla");
+        console.log(data);
+        res.status(500).json({error: "Unknown Error"})
+    }
+})
+
+app.post("/signUp/", async (req: Request, res: Response) => {
+    if (!req.body.email || !req.body.password) {
+        res.status(400).json({error: 'Missing required fields'});
+    }
+    const userData = {email: req.body.email, password: req.body.password};
+    //console.log(userData);
+    let data: AuthError | Object | null = await createUser(supabase, userData.email, userData.password);
+    if (data == null) {
+        res.status(500).json({error: "server error, try again"});
+    }
+    else if (typeof data == typeof AuthError) {
+        res.status(404).json({...data})
+    }
+    else {
+        res.status(200).json({...data});
+    }
+
+    /*if(data.userData) {
+        res.status(200).json({data});
+    }
+    else {
+        res.status(400).json({error: data});
+    }*/
+    //res.status(400).json({error: data});
+
+});
+
+app.post("/login/", async (req: Request, res: Response) => {
+    if (!req.body.email || !req.body.password) {
+        res.status(400).json({error: 'Missing required fields'});
+    }
+    const userData = {email: req.body.email, password: req.body.password};
+    //console.log(userData);
+    let data: AuthError | Object | null = await loginUser(supabase, userData.email, userData.password);
+    if (data == null) {
+        res.status(500).json({error: "server error, try again"});
+    }
+    else if (typeof data == typeof AuthError) {
+        res.status(404).json({...data})
+    }
+    else {
+        res.status(200).json({...data});
+    }
+
+});
 
 //following code is VERY, VERY TEMPORARY FOR TESTING PURPOSES.
 //reason: it is 2 am, I want to add the ability to add videos, I don't want to do it properly. sue me.

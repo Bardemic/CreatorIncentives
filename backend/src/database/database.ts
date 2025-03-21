@@ -1,9 +1,17 @@
 import {SupabaseClient} from "@supabase/supabase-js";
+import {getUser} from "../auth/user.auth";
 
-export const getAllCampaigns = async (supabase: SupabaseClient) => {
+export const getAllCampaigns = async (supabase: SupabaseClient, accessToken: string) => {
+    let user_data = await getUser(supabase, accessToken);
+    console.log(user_data);
+    if (!user_data) {
+        return ("invalid key");
+    }
+    console.log(user_data);
     let {data: campaigns, error} = await supabase
         .from('campaigns')
-        .select('*');
+        .select('*')
+        .eq('creator_id', user_data.id);
     if (error) {
         console.log(error);
         console.log("RUH ROH, ERROR ON AISLE DATABASE.TS ROW GETALLCAMPAIGNS");
