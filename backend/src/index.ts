@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import {AuthApiError, AuthError, createClient, SupabaseClient} from "@supabase/supabase-js";
 import * as process from "node:process";
 import {getAllCampaigns, getCampaign} from "./database/database";
-import {createUser, loginUser, refreshToken} from "./auth/user.auth";
+import {createUser, getUser, loginUser, refreshToken} from "./auth/user.auth";
 let cors = require("cors");
 
 
@@ -21,13 +21,8 @@ app.get("/", (req: Request, res: Response) => {
     res.send("I LOVE!! CREATORINCENTIVES");
 });
 
-app.get("/campaigns/:accessToken", async (req: Request, res: Response) => {
-    if (!req.params.accessToken) {
-        res.status(400).json({error: 'Missing required fields'});
-        return;
-    }
-    let token = JSON.parse(req.params.accessToken).accessToken;
-    let data : any = await getAllCampaigns(supabase, token);
+app.get("/campaigns/", async (req: Request, res: Response) => {
+    let data : any = await getAllCampaigns(supabase);
     res.send(JSON.stringify(data));
 })
 
@@ -118,15 +113,22 @@ app.post("/login/", async (req: Request, res: Response) => {
 //reason: it is 2 am, I want to add the ability to add videos, I don't want to do it properly. sue me.
 //app.post("/addVideo/:link-:user_id-:campaign_id", async (req: Request, res: Response) => {
 app.post("/addVideo/", async (req: Request, res: Response) => {
-    if (!req.body.link || !req.body.user_id || !req.body.campaign_id) {
+    if (!req.body.link || !req.body.jwt_token || !req.body.campaign_id) {
         res.status(400).json({ error: "Missing required fields" });
         return;
     }
-    const video_data_user = { link: req.body.link, user_id: req.body.user_id, campaign_id: req.body.campaign_id } = req.body;
+    let video_data_user = { link: req.body.link, jwt_token: req.body.jwt_token, campaign_id: req.body.campaign_id } = req.body;
 
     //add validation for what should be getting sent
 
     console.table(video_data_user);
+
+    let user = await getUser(supabase, video_data_user.jwt_token);
+    if (user == null) {
+        res.status(401).json({error: "JWT Token Invalid"});
+        return;
+    }
+    video_data_user = {...video_data_user, user_id: user.id};
 
     try {
         fetch(`https://ensembledata.com/apis/tt/post/info?url=${video_data_user.link}&token=${process.env.ENSEMBLE_API_KEY}`)

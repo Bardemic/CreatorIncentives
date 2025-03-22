@@ -7,7 +7,7 @@ export default function ActiveCampaignsDashboard() {
 
     useEffect(() => {
         try {
-            fetch(`http://localhost:3001/campaigns/${JSON.stringify({accessToken: JSON.parse(localStorage.getItem("auth")).access_token})}`)
+            fetch(`http://localhost:3001/campaigns/`)
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
@@ -24,18 +24,43 @@ export default function ActiveCampaignsDashboard() {
     }, [])
 
     return (
-        <div className="flex flex-col w-full h-screen p-8 gap-4 items-start justify-start bg-primary">
+        <div className="flex flex-col w-full h-screen p-8 gap-8 items-start justify-start bg-primary">
             <PageHeader title="Campaigns Dashboard" />
-            {campaigns.length > 0 && campaigns.map((campaign, index) => (
-                <Card
-                    campaignID={campaign.id}
-                    key={index}
-                    description={campaign.description}
-                    imageLink={campaign.image_link}
-                    name={campaign.company_name}
-                    payout={campaign.payout}
-                />
-            ))}
+            <div>
+                <h2 className='text-xl opacity-70 font-bold pb-1'>
+                    Your Campaigns
+                </h2>
+                <div className='flex gap-4'>
+                    {campaigns.length > 0 && campaigns.map((campaign, index) => (
+                        <Card
+                            campaignID={campaign.id}
+                            key={index}
+                            description={campaign.description}
+                            imageLink={campaign.image_link}
+                            name={campaign.company_name}
+                            payout={campaign.payout}
+                        />
+                    ))}
+                </div>
+            </div>
+            <div>
+                <h2 className='text-xl opacity-70 font-bold pb-1'>
+                    Latest Campaigns
+                </h2>
+                <div className='flex gap-4'>
+                    {campaigns.length > 0 && campaigns.map((campaign, index) => (
+                        <Card
+                            campaignID={campaign.id}
+                            key={index}
+                            description={campaign.description}
+                            imageLink={campaign.image_link}
+                            name={campaign.company_name}
+                            payout={campaign.payout}
+                        />
+                    ))}
+                </div>
+            </div>
+
         </div>
         )
 }

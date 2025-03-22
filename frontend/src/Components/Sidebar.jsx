@@ -8,7 +8,7 @@ export default function Sidebar(props) {
         <div className='border-r border-r-tertiary/50 drop-shadow-sm h-screen pt-4 gap-8 w-52 max-w-52 min-w-52 primaryBackgroundGradient  flex flex-col items-stretch px-3 text-center'>
             <h1 className='text-lg text-tertiary'>
                 <span>
-                    Creator
+                    Short
                 </span>
                 <span className='font-bold'>
                     Incentives
