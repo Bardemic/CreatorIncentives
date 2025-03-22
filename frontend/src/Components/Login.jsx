@@ -1,5 +1,6 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
+import Toast from "./Toast.jsx";
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -11,6 +12,16 @@ export default function Login() {
         //add code to make sure it also isn't expired
         navigate("/Dashboard/Home");
     }
+
+    useEffect(() => {
+        if(error != null) {
+            const timer = setTimeout(() => {
+                setError(null);
+            }, 4000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
 
     const fetchSignUp = async () => {
@@ -58,7 +69,6 @@ export default function Login() {
                     <h2 className='text-black/60'>
                         Don't have an account? <span onClick={() => navigate("/signUp")} className='text-tertiary font-bold hover:cursor-pointer'> Sign up</span>
                     </h2>
-                    {error && <div className='text-red-500'>error {error.status}: {error.code}</div>}
                 </div>
                 <div className='flex flex-col gap-4 w-full'>
                     <input
@@ -80,6 +90,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
+            <Toast show={error != null} message={(error && error.status) ? `error ${error.status}: ${error.code}` : ' '} />
         </div>
     )
 }

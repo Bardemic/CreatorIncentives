@@ -1,11 +1,22 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
+import Toast from "./Toast.jsx";
 
 export default function SignUp() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(error != null) {
+            const timer = setTimeout(() => {
+                setError(null);
+            }, 4000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     if (localStorage.getItem('auth') != null) {
         //add code to make sure it also isn't expired
@@ -58,7 +69,6 @@ export default function SignUp() {
                     <h2 className='text-black/60'>
                         Already have an account? <span onClick={() => navigate("/login")} className='text-tertiary font-bold hover:cursor-pointer'> Log in</span>
                     </h2>
-                    {error && <div className='text-red-500'>error {error.status}: {error.code}</div>}
                 </div>
                 <div className='flex flex-col gap-4 w-full'>
                     <input
@@ -80,6 +90,7 @@ export default function SignUp() {
                     </div>
                 </div>
             </div>
+            <Toast show={error != null} message={(error && error.status) ? `error ${error.status}: ${error.code}` : ' '} />
         </div>
     )
 }
