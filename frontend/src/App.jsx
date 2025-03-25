@@ -55,9 +55,9 @@ export default function Home() {
     useEffect(() => {
         let localData = JSON.parse(localStorage.getItem('auth'));
         if(localData) {
-            console.log(localData);
-            console.log('test');
-            console.log(localData.refresh_token);
+            //console.log(localData);
+            //console.log('test');
+            //console.log(localData.refresh_token);
             fetch('http://localhost:3001/refresh/', {
                 method: 'POST',
                 headers: {
@@ -70,6 +70,7 @@ export default function Home() {
                     console.log("auth: ", response);
                     if (response.access_token && response.refresh_token) {
                         localStorage.setItem('auth', JSON.stringify({email: response.email, access_token: response.access_token, refresh_token: response.refresh_token}));
+                        //console.log(JSON.parse(localStorage.getItem('auth')), '<- new auth localstorage');
                         setLoggedIn(true);
                     }
                     else {

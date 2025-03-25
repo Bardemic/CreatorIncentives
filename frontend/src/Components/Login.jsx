@@ -3,9 +3,10 @@ import {useNavigate} from "react-router";
 import Toast from "./Toast.jsx";
 
 export default function Login() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState(null)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [lastError, setLastError] = useState(null);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     if (localStorage.getItem('auth') != null) {
@@ -42,6 +43,7 @@ export default function Login() {
                 console.log(response);
                 if (!response.user) {
                     setError({status: response.status, code: response.code});
+                    setLastError({status: response.status, code: response.code});
                 }
                 else {
                     //localStorage is bad, just temporary
@@ -90,7 +92,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-            <Toast show={error != null} message={(error && error.status) ? `error ${error.status}: ${error.code}` : ' '} />
+            <Toast show={error != null} message={(lastError && lastError.status) ? `error ${lastError.status}: ${lastError.code}` : ' '} />
         </div>
     )
 }
