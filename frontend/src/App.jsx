@@ -37,7 +37,7 @@ const CreatorRoutes = () => {
 
     return (
 
-        <div className="flex w-screen bg-primary">
+        <div className="flex w-screen mainBGgradient">
             <Sidebar handleSignOut={handleSignOut} selected={selected} setSelected={setSelected} />
             <Routes>
                 <Route path="/Home" setSelected={setSelected} element=<HomeDashboard campaigns={testCampaigns} /> />

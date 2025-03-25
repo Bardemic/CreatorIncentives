@@ -41,7 +41,7 @@ export default function CampaignPage() {
         console.log(params.campaignID)
     }, [params.campaignID]); *///ideas: show stuff like other videos used, total views for campaign, etc
     return (
-        <div className='h-full bg-primary w-full p-4'>
+        <div className='h-full  w-full p-4'>
             {campaign.id &&
                 <div className='flex flex-col gap-4 w-1/2'>
                     <PageHeader title={campaign.company_name} />

@@ -24,7 +24,7 @@ export default function ActiveCampaignsDashboard() {
     }, [])
 
     return (
-        <div className="flex flex-col w-full h-screen p-8 gap-8 items-start justify-start bg-primary">
+        <div className="flex flex-col w-full h-screen p-8 gap-8 items-start justify-start">
             <PageHeader title="Campaigns Dashboard" />
             <div>
                 <h2 className='text-xl opacity-70 font-bold pb-1'>

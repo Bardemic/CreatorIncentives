@@ -15,12 +15,35 @@
   .primaryBackgroundGradient {
     background-image: var(--gradient-primaryBG);
   }
+  .mainBGgradient {
+    background: linear-gradient(270deg, #C1FBFF, #DFC3FD);
+  }
+  .sidebarButtonGradient {
+    background: linear-gradient(rgba(216, 194, 255, 0.20), rgba(0, 13, 255, 0.20));
+    filter: drop-shadow(0 0 0.175px rgba(0,0,0,.3));
+  }
+  .sidebarButtonGradientSelected {
+    background: #5E00FF;
+    filter: drop-shadow(0 0 0.175px rgba(0,0,0,.3));
+  }
+  .sidebarFrontButton {
+    background-color: white;
+    filter: blur(1px);
+    box-shadow: inset 0 0 2px 3px rgba(0,0,0, 0.1);
+  }
+
+  .sidebarFrontButtonSelected {
+    background-color: #5E00FF;
+    filter: blur(1px);
+    box-shadow: inset 0 0 2px 3px rgba(0,0,0, 0.1);
+  }
 }
 
 @theme {
   --color-primary: #fdf8fd;
   --color-secondary: var(--color-white);
   --color-tertiary: var(--color-indigo-500);
+  --color-black: #131313;
 
   --gradient-primaryBG: linear-gradient(60deg, #e9e9ff, #f7e9ff);
 }

@@ -5,7 +5,7 @@ import Button from "./Button.jsx";
 
 export default function Sidebar(props) {
     return (
-        <div className='border-r border-r-tertiary/50 drop-shadow-sm h-screen pt-4 gap-8 w-52 max-w-52 min-w-52 primaryBackgroundGradient  flex flex-col items-stretch px-3 text-center'>
+        <div className='h-screen pt-4 gap-8 w-60 mx-2 max-w-52 min-w-52  flex flex-col items-stretch px-3 text-center'>
             <h1 className='text-lg text-tertiary'>
                 <span>
                     Short
@@ -16,35 +16,35 @@ export default function Sidebar(props) {
             </h1>
             <div className="flex flex-col gap-2">
                 <SidebarButton
-                    endIcon={<LayoutDashboard size={20} />}
+                    endIcon={<LayoutDashboard size={28} />}
                     selected={props.selected === "Home"}
                     selectedColor={'text-tertiary'}
                     selectFunction={props.setSelected}
                     value={"Home"}
                 />
                 <SidebarButton
-                    endIcon={<TvMinimal size={20}/>}
+                    endIcon={<TvMinimal size={28}/>}
                     selected={props.selected === "Videos"}
                     selectedColor={'text-tertiary'}
                     selectFunction={props.setSelected}
                     value={"Videos"}
                 />
                 <SidebarButton
-                    endIcon={<Megaphone size={20} />}
+                    endIcon={<Megaphone size={28} />}
                     selected={props.selected === "Campaigns"}
                     selectedColor={'text-tertiary'}
                     selectFunction={props.setSelected}
                     value={"Campaigns"}
                 />
                 <SidebarButton
-                    endIcon={<ChartBar size={20} />}
+                    endIcon={<ChartBar size={28} />}
                     selected={props.selected === "Analytics"}
                     selectedColor={'text-tertiary'}
                     selectFunction={props.setSelected}
                     value={"Analytics"}
                 />
                 <SidebarButton
-                    endIcon={<SettingsIcon size={20} />}
+                    endIcon={<SettingsIcon size={28} />}
                     selected={props.selected === "Settings"}
                     selectedColor={'text-tertiary'}
                     selectFunction={props.setSelected}
